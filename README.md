@@ -10,6 +10,11 @@ v0.0.2
 创建基本操作:
 应用中创建一个新的 “Hello” 页面
 
+v0.0.3
+使用表单
+创建一个让用户提交数据的表单页。该页将显示一个包含 name 输入框和 email 输入框的表单。
+当提交这两部分信息后，页面将会显示用户所输入的信息。
+
 
 Thank you for choosing Yii 2 - a modern PHP framework designed for professional Web development.
 

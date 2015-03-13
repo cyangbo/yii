@@ -2,6 +2,13 @@ Yii PHP Framework Version 2
 ===========================
 v0.0.1
 配置导入框架
+域名:
+yii.com
+documentroot  d:\wamp\www\yii\basic\web
+
+v0.0.2
+创建基本操作:
+应用中创建一个新的 “Hello” 页面
 
 
 Thank you for choosing Yii 2 - a modern PHP framework designed for professional Web development.

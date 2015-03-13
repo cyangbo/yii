@@ -15,6 +15,13 @@ v0.0.3
 创建一个让用户提交数据的表单页。该页将显示一个包含 name 输入框和 email 输入框的表单。
 当提交这两部分信息后，页面将会显示用户所输入的信息。
 
+v0.0.4
+使用数据库
+创建一个数据库:yii2basic
+具体操作:
+http://yii.com/index.php?r=country/index
+
+
 
 Thank you for choosing Yii 2 - a modern PHP framework designed for professional Web development.
 

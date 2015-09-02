@@ -1,0 +1,42 @@
+为了使用 Nginx，你应该已经将 PHP 安装为 FPM SAPI 了。使用如下 Nginx 配置，将 path/to/basic/web 替换为实际的 basic/web 目录，mysite.local 替换为实际的主机名以提供服务。
+
+server {
+    charset utf-8;
+    client_max_body_size 128M;
+
+    listen 80; ## 监听 ipv4 上的 80 端口
+    #listen [::]:80 default_server ipv6only=on; ## 监听 ipv6 上的 80 端口
+
+    server_name mysite.local;
+    root        /path/to/basic/web;
+    index       index.php;
+
+    access_log  /path/to/basic/log/access.log main;
+    error_log   /path/to/basic/log/error.log;
+
+    location / {
+        # 如果找不到真实存在的文件，把请求分发至 index.php
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    # 若取消下面这段的注释，可避免 Yii 接管不存在文件的处理过程（404）
+    #location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
+    #    try_files $uri =404;
+    #}
+    #error_page 404 /404.html;
+
+    location ~ \.php$ {
+        include fastcgi.conf;
+        fastcgi_pass   127.0.0.1:9000;
+        #fastcgi_pass unix:/var/run/php5-fpm.sock;
+        try_files $uri =404;
+    }
+
+    location ~ /\.(ht|svn|git) {
+        deny all;
+    }
+}
+
+使用该配置时，你还应该在 php.ini 文件中设置 cgi.fix_pathinfo=0 ，能避免掉很多不必要的 stat() 系统调用。
+
+还要注意当运行一个 HTTPS 服务器时，需要添加 fastcgi_param HTTPS on; 一行，这样 Yii 才能正确地判断连接是否安全。

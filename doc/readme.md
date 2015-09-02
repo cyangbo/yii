@@ -7,3 +7,7 @@ documentroot  d:\wamp\www\yii\basic\web
 直接访问:
 yii.com
 如果有页面则通过
+
+v0.0.2 web服务器配置
+apache
+nginx

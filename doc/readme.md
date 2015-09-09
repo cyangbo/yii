@@ -25,3 +25,7 @@ yii.com/index.php?r=gii
 http://www.yiichina.com/doc/guide/2.0/start-gii
 
 v0.0.6 入口文件
+
+v0.0.7 应用主题配置
+教程:
+http://www.yiichina.com/doc/guide/2.0/structure-applications

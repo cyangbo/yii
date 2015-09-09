@@ -10,10 +10,10 @@ require(__DIR__ . '/../vendor/autoload.php');
 // 包含 Yii 类文件
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
-// 加载应用配置
+// 加载应用主体配置
 $config = require(__DIR__ . '/../config/web.php');
 
-// 创建、配置、运行一个应用
+// 创建、配置、运行一个应用主体
 (new yii\web\Application($config))->run();
 
 

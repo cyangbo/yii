@@ -17,3 +17,9 @@ v0.0.3 hello 控制器_视图
 v0.0.3 使用表单(未通过)
 
 v0.0.4 使用数据库
+
+
+v0.0.5 使用gii生成代码
+yii.com/index.php?r=gii
+教程:
+http://www.yiichina.com/doc/guide/2.0/start-gii

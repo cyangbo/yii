@@ -23,3 +23,5 @@ v0.0.5 使用gii生成代码
 yii.com/index.php?r=gii
 教程:
 http://www.yiichina.com/doc/guide/2.0/start-gii
+
+v0.0.6 入口文件

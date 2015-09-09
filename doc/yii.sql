@@ -1,3 +1,5 @@
+--服务器数据库:新建mysql账号yii2  密码yii1990  权限数据库:yii2basic
+
 --创建数据库:yii2basic
 create database yii2basic;
 

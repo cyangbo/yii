@@ -91,4 +91,19 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    
+    
+    
+    
+    
+    //say 操作被定义为 actionSay 方法.Yii 使用 action 前缀区分普通方法和操作。action 前缀后面的名称被映射为操作的 ID。
+    //浏览器访问:
+    //http://yii.com/index.php?r=site/say
+    //yii.com/index.php?r=site/say&message=cc+world
+    //新页面和其它页面使用同样的头部和尾部是因为 [[yii\web\Controller::render()|render()]] 方法会自动把 say 视图执行的结果嵌入称为布局的文件中
+    //本例中是 views/layouts/main.php。
+    //参数 r 需要更多解释。它代表路由，是整个应用级的，指向特定操作的独立 ID。路由格式是 控制器 ID/操作 ID
+    public function actionSay($message = 'Hello'){
+    	return $this->render('say',['message' => $message]);
+    }
 }

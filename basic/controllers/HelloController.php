@@ -52,4 +52,27 @@ class HelloController extends Controller
         
     }
     
+    /**
+     * 响应组件:response
+     * http://yii.com/index.php?r=hello/response
+     * 
+     */
+    public function actionResponse(){
+    	
+    	$response = new \YII::$app->response;
+    	echo "ss";
+    	//设置状态码
+    	$response->statusCode = '404';
+    	
+    	$response->headers->add('pragma','no-cache');
+    	$response->headers->set('pragma','max-age=5');
+
+    	//跳转到baidu,无效?????
+    	$response->headers->add('location','http://www.baidu.com');
+    	
+    	//跳转到sina
+    	//$this->redirect('http://www.sina.com.cn');
+    	
+    }
+    
 }

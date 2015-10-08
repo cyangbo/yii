@@ -157,9 +157,19 @@ class HelloController extends Controller
     	$hello_str = "这是传递进视图的数据";
     	$hello_str2 = array(1,2,3);
     	
+    	//弹出对话框:如果内容从用户传递过来,那么会有安全问题
+    	$hello_str3 = 'hello<script>alert(3)</script>';
+    	
+    	//过滤:使用Html::encode可以输入内容:hello<script>alert(3)</script>
+    	//<h2><?=Html::encode($view_hello3);></h2>
+    	
+    	//过滤:使用HTMLPurifier::process,可以输入:hello  后面的<script>被过滤掉
+    	//<?=HTMLPurifier::process($view_hello3); >
+    	
     	$data = array();
     	$data['view_hello'] = $hello_str;
     	$data['view_hello2'] = $hello_str2;
+    	$data['view_hello3'] = $hello_str3;
     	
     	
     	//视图的文件位置:

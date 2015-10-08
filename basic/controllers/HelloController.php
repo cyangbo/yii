@@ -152,9 +152,19 @@ class HelloController extends Controller
      */
     public function actionView(){
     	
+    	
+    	//传递数据
+    	$hello_str = "这是传递进视图的数据";
+    	$hello_str2 = array(1,2,3);
+    	
+    	$data = array();
+    	$data['view_hello'] = $hello_str;
+    	$data['view_hello2'] = $hello_str2;
+    	
+    	
     	//视图的文件位置:
     	//\yii\basic\views\hello\helloview.php
-    	return $this->renderPartial('helloview');
+    	return $this->renderPartial('helloview',$data);
     	//echo "shitu";
     	
     }

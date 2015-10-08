@@ -179,4 +179,16 @@ class HelloController extends Controller
     	
     }
     
+    /**
+     * 视图布局:
+     * http://yii.com/index.php?r=hello/viewany
+     */
+    public $layout = 'common';
+    public function actionViewany(){
+    	
+    	//在layout/common.php页面中,使用<?=$content >加载hello/index.php页面内容
+    	return $this->render('index');
+    	
+    }
+    
 }

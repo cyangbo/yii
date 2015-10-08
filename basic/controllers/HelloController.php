@@ -10,6 +10,9 @@ use yii\web\Controller;
 use yii\web\Cookie;
 
 
+use app\models\Test;
+
+
 class HelloController extends Controller
 {
     
@@ -188,6 +191,92 @@ class HelloController extends Controller
     	
     	//在layout/common.php页面中,使用<?=$content >加载hello/index.php页面内容
     	return $this->render('index');
+    	
+    }
+    
+    /**
+     * 数据块:活动记录
+     * http://yii.com/index.php?r=hello/model
+     */
+    public function actionModel(){
+    	
+    	//$id = '1 or 1=1';
+    	$mm = 1;
+    	$sql = 'select * from test where id=:cc';
+    	$get = Test::findBySql($sql,array(':cc'=>$mm))->all();		//使用占位符,避免被sql注入
+    	//print_r($get);
+    	/* Array
+    	(
+    			[0] => app\models\Test Object
+    			(
+    					[_attributes:yii\db\BaseActiveRecord:private] => Array
+    					(
+    							[id] => 1
+    							[title] => title
+    					)
+    	
+    					[_oldAttributes:yii\db\BaseActiveRecord:private] => Array
+    					(
+    							[id] => 1
+    							[title] => title
+    					)
+    	
+    					[_related:yii\db\BaseActiveRecord:private] => Array
+    					(
+    					)
+    	
+    					[_errors:yii\base\Model:private] =>
+    					[_validators:yii\base\Model:private] =>
+    					[_scenario:yii\base\Model:private] => default
+    					[_events:yii\base\Component:private] => Array
+    					(
+    					)
+    	
+    					[_behaviors:yii\base\Component:private] => Array
+    					(
+    					)
+    	
+    			)
+    	
+    	) */
+    	
+    	
+    	/**
+    	 * 通过数组查询
+    	 */
+    	
+    	$get2 = Test::find()->where(['id'=>1])->all();
+    	//print_r($get2);
+    	
+    	//查询id>0
+    	$get3 = Test::find()->where(['>','id',0])->all();
+    	//print_r($get3);
+    	
+    	
+    	//id>=1 and id<=2
+    	$get4 = Test::find()->where(['between','id',1,2])->all();
+    	//print_r(count($get4));
+    	
+    	//查询 title like "%title1%"
+    	$get5 = Test::find()->where(['like','title','title1'])->all();
+    	//print_r(count($get5));
+    	
+    	
+    	//将查询结果转换成数组(对象对内存占有很大,转化成数组后对内存占用低)
+    	$get6 = Test::find()->where(['like','title','title1'])->asArray()->all();
+    	$get7 = Test::find()->where(['between','id',1,2])->asArray()->all();
+    	//print_r($get7);
+    	//Array ( [0] => Array ( [id] => 1 [title] => title ) [1] => Array ( [id] => 2 [title] => title2 ) )
+    	
+    	//批量查询,每次取2条记录,例如,有10条数据,会分5次查询出来,这样单次查询量减少,性能提高
+    	foreach(Test::find()->batch(2) as $tests){
+    		
+    		print_r($tests);
+    		//print_r(count($tests));//显示2
+    		
+    	}
+    	
+    	
     	
     }
     

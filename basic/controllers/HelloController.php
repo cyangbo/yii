@@ -286,7 +286,7 @@ class HelloController extends Controller
     	
     	
     	//添加数据
-    	$add = new Test;
+    	/* $add = new Test;
     	
     	$add->id = 11;
     	$add->title = "le2";
@@ -298,10 +298,13 @@ class HelloController extends Controller
     		die;
     	}
     	
-    	$add->save();
+    	$add->save(); */
     	
     	
-    	
+    	//修改数据
+    	$alter = Test::find()->where(['id'=>4])->one();
+    	$alter->title = 'title被修改了';
+    	$alter->save();
     	
     }
     

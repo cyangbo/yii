@@ -7,6 +7,8 @@ namespace app\controllers;
 use YII;
 use yii\web\Controller;
 
+use yii\web\Cookie;
+
 
 class HelloController extends Controller
 {
@@ -74,5 +76,75 @@ class HelloController extends Controller
     	//$this->redirect('http://www.sina.com.cn');
     	
     }
+    
+    /**
+     * session组件
+     * http://yii.com/index.php?r=hello/session
+     */
+    public function actionSession(){
+    	
+    	$session = \YII::$app->session;
+    	
+    	//开启session
+    	$session->open();
+    	
+    	//判断session是否开启
+    	if($session->isActive){
+    		echo "session is Active";
+    	}else{
+    		echo "session is not Active";
+    	}
+    	
+    	//写法1(当成对象)
+    	//设置session
+    	$session->set('user','李白');
+    	
+    	//获取session
+    	echo $session->get('user');
+    	
+    	//删除session
+    	$session->remove('user');
+
+    	
+    	//写法2(当成数组)
+    	$session['user'] = '杜甫'; 
+    	echo $session['user'];
+    	unset($session['user']);
+    	
+    	$session['user2'] = '小明';
+    	
+    }
+    
+    
+    /**
+     * Cookie组件
+     * http://yii.com/index.php?r=hello/cookie
+     * 
+     * 当访问到这个方法后,cookie就会写入name为user,value值为:小李
+     * 其中vaule显示的是加密后的密码串
+     * 
+     */
+    public function actionCookie(){
+    	
+    	//设置cookie
+    	$cookie = \YII::$app->response->cookies;
+    	
+    	$cookie_data = array('name'=>'user','value'=>'小李');
+    	
+    	$cookie->add(new Cookie($cookie_data));
+    	
+    	//删除cookie
+    	//$cookie->remove('user');
+    	
+    	//获取cookie
+    	$cookie2 = \YII::$app->request->cookies;
+    	echo $cookie2->getValue('user');
+    	
+    	//如果user不存在,那么显示20
+    	echo $cookie2->getValue('user',20);
+    	
+    	
+    }
+    
     
 }

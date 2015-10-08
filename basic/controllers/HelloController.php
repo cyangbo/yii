@@ -277,6 +277,15 @@ class HelloController extends Controller
     	}
     	
     	
+    	//删除数据写法1
+    	//$remove = Test::find()->where(['id'=>1])->all();
+    	//$remove[0]->delete();
+    	
+    	//删除数据写法2(使用占位符,将id>0的数据删除掉)
+    	//Test::deleteAll('id>:id',array(':id'=>0));
+    	
+    	
+    	
     	
     }
     

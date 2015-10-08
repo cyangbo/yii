@@ -146,5 +146,17 @@ class HelloController extends Controller
     	
     }
     
+    /**
+     * 显示视图文件:
+     * http://yii.com/index.php?r=hello/view
+     */
+    public function actionView(){
+    	
+    	//视图的文件位置:
+    	//\yii\basic\views\hello\helloview.php
+    	return $this->renderPartial('helloview');
+    	//echo "shitu";
+    	
+    }
     
 }

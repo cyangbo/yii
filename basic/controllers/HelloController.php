@@ -271,7 +271,7 @@ class HelloController extends Controller
     	//批量查询,每次取2条记录,例如,有10条数据,会分5次查询出来,这样单次查询量减少,性能提高
     	foreach(Test::find()->batch(2) as $tests){
     		
-    		print_r($tests);
+    		//print_r($tests);
     		//print_r(count($tests));//显示2
     		
     	}
@@ -283,6 +283,22 @@ class HelloController extends Controller
     	
     	//删除数据写法2(使用占位符,将id>0的数据删除掉)
     	//Test::deleteAll('id>:id',array(':id'=>0));
+    	
+    	
+    	//添加数据
+    	$add = new Test;
+    	
+    	$add->id = 11;
+    	$add->title = "le2";
+    	
+    	//启用验证器
+    	$add->validate();
+    	if($add->hasErrors()){
+    		echo "输入的数据不合法";
+    		die;
+    	}
+    	
+    	$add->save();
     	
     	
     	

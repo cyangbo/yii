@@ -46,6 +46,24 @@ class CachefileController extends Controller
     	
     	
     }
+    
+    /**
+     * 设置缓存的有效期
+     * http://yii.com/index.php?r=cachefile/time
+     */
+    public function actionTime(){
+    	
+    	$cache = \YII::$app->cache;
+    	
+    	//有效期设置(有效期15秒),过了15秒会消失
+    	$cache->add('key1','hello cache time',15);
+    	$cache->add('key2','hello cache time',15);
+    	
+    	$cache->set('key2','hello cache time',5);	//设置5秒
+    	
+    	echo $cache->get('key1');
+    	
+    }
     	
     	
     

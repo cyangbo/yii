@@ -27,6 +27,11 @@ class ClassmapController extends Controller
     	$order = new Order;
     	
     	
+    	//组件的延迟加载(调用这一行后,才会加载session组件) - 使用的时候才加载
+    	$session = \YII::$app->session;
+    	
+    	
+    	
     	
   
     }

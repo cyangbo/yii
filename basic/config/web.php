@@ -19,7 +19,7 @@ $config = [
             'cookieValidationKey' => '233333333333333',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\FileCache',		//文件缓存
         ],
         'user' => [
             'identityClass' => 'app\models\User',

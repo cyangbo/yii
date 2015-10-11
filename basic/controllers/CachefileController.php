@@ -113,6 +113,35 @@ class CachefileController extends Controller
     	
     	
     }
+    
+    /**
+     * 依赖关系缓存:DB依赖
+     * http://yii.com/index.php?r=cachefile/dbdependency
+     */
+    public function actionDbdependency(){
+    	
+    	//获取缓存组件
+    	$cache = \YII::$app->cache;
+    	
+    	$dependency = new \yii\caching\DbDependency(
+    			['sql'=>'select count(*) from yii2basic.order']		//数据库yii2basic下面的order表
+    			);
+    	
+    	$cache->add('db_key','hello db cache',3000,$dependency);
+    	var_dump($cache->get('db_key'));
+    	/**
+    	 * 访问:
+    	 * http://yii.com/index.php?r=cachefile/dbdependency
+    	 * 打印:
+    	 * string 'hello db cache' (length=14)
+    	 * 对order修改(增加一行),这样,$dependency中查询出来的值会修改
+    	 * 再访问
+    	 * http://yii.com/index.php?r=cachefile/dbdependency
+    	 * 打印:
+    	 * boolean false
+    	 */
+    	
+    }
     	
     	
     

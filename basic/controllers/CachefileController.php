@@ -83,6 +83,36 @@ class CachefileController extends Controller
     	//print_r($dependency);
 
     }
+    
+    /**
+     * 依赖关系缓存:表达式依赖
+     * http://yii.com/index.php?r=cachefile/expression
+     */
+    public function actionExpression(){
+    	
+    	//获取缓存组件
+    	$cache = \YII::$app->cache;
+    	
+    	$dependency = new \yii\caching\ExpressionDependency(
+    			['expression'=>'\YII::$app->request->get("name")']
+    			);
+    	
+    	$cache->add('expression_key1','hello cache',3000,$dependency);
+    	var_dump($cache->get('expression_key1'));
+    	
+    	/**
+    	 * 访问:
+    	 * http://yii.com/index.php?r=cachefile/expression&name=cc
+    	 * 打印:hello cache
+    	 * 如果修改name的值
+    	 * http://yii.com/index.php?r=cachefile/expression&name=dd
+    	 * $dependency发生了变化,cache依赖这个$dependency,所以失效,所以
+    	 * 打印:boolean false
+    	 * 
+    	 */
+    	
+    	
+    }
     	
     	
     

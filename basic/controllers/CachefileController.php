@@ -64,6 +64,25 @@ class CachefileController extends Controller
     	echo $cache->get('key1');
     	
     }
+    
+    /**
+     * 依赖关系缓存:文件依赖
+     * http://yii.com/index.php?r=cachefile/dependency
+     */
+    public function actionDependency(){
+    	
+    	//获取缓存组件
+    	$cache = \YII::$app->cache;
+    	
+    	//文件依赖
+    	$dependency = new \yii\caching\FileDependency(['fileName'=>'hw.txt']);	//$dependency对应的地址:D:\wamp\www\yii\basic\web\hw.txt
+    	$cache->add('file_key22','hello cache',3000,$dependency);	//设置了缓存时间为3000s,依赖文件$dependency定义的hw.txt
+    	
+
+    	var_dump($cache->get('file_key22'));	//会打印出hello cache,//如果超过3000s或者hw.txt修改,缓存就会失效,打印出boolse
+    	//print_r($dependency);
+
+    }
     	
     	
     

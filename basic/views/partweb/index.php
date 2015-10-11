@@ -1,4 +1,12 @@
-<?php if($this->beginCache('cache_div')){
+<?php 
+	//设置缓存时间
+	$duration = 15;		//缓存15秒,15秒后会缓存失效,读取页面内容
+	
+	//缓存开关
+	$enabled = false;		//不使用缓存
+?>
+
+<?php if($this->beginCache('cache_div',['duration'=>$duration,'enabled'=>$enabled])){
 	
 	/**
 	 * 第一次运行:

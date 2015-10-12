@@ -26,7 +26,7 @@ class HttpcacheController extends Controller
     public function actionIndex()
     {
     	
-		return $this->renderPartial('idnex');
+		return $this->renderPartial('index');
         
     }
     
@@ -34,10 +34,18 @@ class HttpcacheController extends Controller
     	return [
     			[
     					'class'=>'yii\filters\HttpCache',
-    					'lastModified'=>function(){
-    						return 13322233345;
-    					}
+    					'lastModified'=>function(){	//通过lastModified判断比对:判断数据修改时间是否一样
+    						return 1432817565;		//这个是时间戳,会塞到http的头部,服务器发送给浏览器
+    												//浏览器会存储成lastModifid
+    												//之后再访问会和服务器的时间戳比对,如果一样,那么直接用缓存,不调用视图文件
+    												//服务器会把304的状态发送给浏览器
+    					},
     					
+    					//判断lastModified,如果是一样的话,直接使用缓存,不再判断etagSeed
+    					
+    					'etagSeed'=>function(){		//通过etagSeed判断比对
+    						return 'etagseed2';		//判断etagSeed的值(内容,是否一样)
+    					}
     			]	
     	];
     }

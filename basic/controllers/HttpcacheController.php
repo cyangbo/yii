@@ -30,8 +30,36 @@ class HttpcacheController extends Controller
         
     }
     
+    /**
+     * http缓存实例
+     *http://yii.com/index.php?r=httpcache/httpcache
+     */
+    public function actionHttpcache(){
+    	
+    	$content = file_get_contents('hw.txt');
+    	return $this->renderPartial('httpcache',['new'=>$content]);
+    }
+    
     public function behaviors(){
+    	
     	return [
+    		[
+    				'class'=>'yii\filters\HttpCache',
+    				'lastModified'=>function(){
+    					return filemtime('hw.txt');		//根据文件的修改时间判断
+    				},
+    				'etagSeed'=>function (){
+    					$fp = fopen('hw.txt','r');		//根据文件的第一行内容,是否改变判断
+    					$title = fgets($fp);
+    					fclose($fp);
+    					return $title;
+    				}
+    				
+    		]	
+    	];
+    	
+    	
+    	/* return [
     			[
     					'class'=>'yii\filters\HttpCache',
     					'lastModified'=>function(){	//通过lastModified判断比对:判断数据修改时间是否一样
@@ -47,7 +75,7 @@ class HttpcacheController extends Controller
     						return 'etagseed2';		//判断etagSeed的值(内容,是否一样)
     					}
     			]	
-    	];
+    	]; */
     }
     
     

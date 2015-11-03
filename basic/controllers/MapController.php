@@ -51,10 +51,10 @@ class MapController extends Controller
     	
     	//关联查询的多次查询
     	//写法1
-    	//$customer2 = Customer::find()->all();		//查询出所有:select * from customer
+    	$customer2 = Customer::find()->all();		//查询出所有:select * from customer
     	
     	//优化写法2(选取所有顾客,并给顾客赋值orders
-    	$customer2 = Customer::find()->with('orders')->all();
+    	//$customer2 = Customer::find()->with('orders')->all();			这个写法报错了
     	//select * from customer
     	//select * from order where customer_id in (..);
     	
@@ -66,7 +66,7 @@ class MapController extends Controller
     		//每个顾客都访问订单数据(每次都会查询)
     		//
     		$ord = $cus->orders;	//select * from order where customer_id = 
-    		//print_r($ord);
+    		print_r($ord);
     		
     	}
     	

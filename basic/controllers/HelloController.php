@@ -76,7 +76,7 @@ class HelloController extends Controller
     	$response->headers->add('location','http://www.baidu.com');
     	
     	//跳转到sina
-    	//$this->redirect('http://www.sina.com.cn');
+    	$this->redirect('http://www.sina.com.cn');
     	
     }
     

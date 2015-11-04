@@ -30,6 +30,12 @@ class TrackingController extends Controller
 		
 		//print_r($test);
 		
+		$data = array();
+		
+		
+		
+		return $this->renderPartial('index',$data);
+		
 		
 		
 

@@ -10,6 +10,8 @@ use app\models\common\Express;
 
 class TrackingController extends Controller
 {
+	
+	public $layout = 'tracking_header';
 
 
 	public function actionIndex()
@@ -34,7 +36,7 @@ class TrackingController extends Controller
 		
 		
 		
-		return $this->renderPartial('index',$data);
+		return $this->render('index',$data);
 		
 		
 		
